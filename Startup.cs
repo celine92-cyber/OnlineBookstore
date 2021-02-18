@@ -26,10 +26,14 @@ namespace OnlineBookstore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+           //Connect the database
             services.AddDbContext<OnlineBookstoreDbContext>(options =>
            {
                options.UseSqlServer(Configuration["ConnectionStrings:OnlineBookstoreConnection"]);
            });
+
+            //Add Scope
             services.AddScoped<IOnlineBookstoreRepository, EFOnlineBookstoreRepository>();
         }
 
@@ -60,7 +64,7 @@ namespace OnlineBookstore
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            SeedData.EnsurePopulated(app);
+            SeedData.EnsurePopulated(app); //bring the seed data
         }
     }
 }
