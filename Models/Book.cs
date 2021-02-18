@@ -9,15 +9,18 @@ namespace OnlineBookstore.Models
     public class Book
     {
         [Key][Required]
-        public int BookId { get; set; }
+        public int BookId { get; set; }//generate the primary key
         [Required]
         public string Title { get; set; }
         [Required]
         public string Author { get; set; }
         [Required]
         public string Publisher { get; set; }
-        [Required]
+
+        [Required][MaxLength(14)][MinLength(14)] //set data validation for ISBN
         public string ISBN { get; set; }
+        [Required]
+        public string Classification { get; set; }//The Classification and Category column in the orginal table is normalized
         [Required]
         public string Category { get; set; }
         [Required]
