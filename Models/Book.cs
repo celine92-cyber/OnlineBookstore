@@ -23,6 +23,8 @@ namespace OnlineBookstore.Models
         //set data validation for ISBN
         [Required][MaxLength(14)][MinLength(14)]
         [RegularExpression("^(?:ISBN(?:-13)?:?\\ )?(?=[0-9]{13}$|(?=(?:[0-9]+[-\\ ]){4})[-\\ 0-9]{17}$)97[89][-\\ ]?[0-9]{1,5}[-\\ ]?[0-9]+[-\\ ]?[0-9]+[-\\ ]?[0-9]$", ErrorMessage = "Must be a valid ISBN number in format 13 digits")]
+        //Below is another ISBN validation that an TA helped me
+        //[RegularExpression(^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$), ErrorMessage = "Must be a valid ISBN number in format 13 digits]
         public string ISBN { get; set; }
 
         [Required]
