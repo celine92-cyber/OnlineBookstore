@@ -23,7 +23,16 @@ namespace OnlineBookstore.Controllers
 
         public IActionResult Index()
         {
-            return View(_repository.Books);
+            if (ModelState.IsValid)
+            {
+                return View(_repository.Books);
+            }
+
+            else
+            {
+                return View();
+            }
+            
         }
 
         public IActionResult Privacy()

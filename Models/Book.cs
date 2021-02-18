@@ -17,7 +17,9 @@ namespace OnlineBookstore.Models
         [Required]
         public string Publisher { get; set; }
 
-        [Required][MaxLength(14)][MinLength(14)] //set data validation for ISBN
+        //set data validation for ISBN
+        [Required][MaxLength(14)][MinLength(14)]
+        [RegularExpression("^(?:ISBN(?:-13)?:?\\ )?(?=[0-9]{13}$|(?=(?:[0-9]+[-\\ ]){4})[-\\ 0-9]{17}$)97[89][-\\ ]?[0-9]{1,5}[-\\ ]?[0-9]+[-\\ ]?[0-9]+[-\\ ]?[0-9]$", ErrorMessage = "Must be a valid ISBN number in format 13 digits")]
         public string ISBN { get; set; }
         [Required]
         public string Classification { get; set; }//The Classification and Category column in the orginal table is normalized
