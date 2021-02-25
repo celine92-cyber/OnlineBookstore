@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-@model IQueryable<Book>
+@model BookListsViewModel
 
 <div class="text-center">
     <header>
@@ -9,7 +9,7 @@
     </header>
 </div>
 
-@foreach (var x in Model)
+@foreach (var x in Model.Books)
 {
     <div class="text-center">
         <h3>Title: @x.Title</h3>
@@ -20,3 +20,5 @@
         <p>Price: @x.Price</p>
     </div>
 }
+
+<div page-model="@Model.PagingInfo" page-action="Index"></div>
