@@ -9,8 +9,32 @@
 </head>
 <body>
     <!--Some Bootstrap design is used below-->
-    <div class="text-center" style="background-color:cadetblue">
+
+    <!--This is one of the new bootstrap commands that I use: round the img-->
+    <img class="rounded-circle center" src="https://cdn1.vectorstock.com/i/1000x1000/21/10/online-bookstore-vector-6382110.jpg" alt="Circle image" width="200" height="200"/>
+
+    <!--top navigation bar-->
+    <div class="bg-dark text-white p-2">
+        <span class="navbar-brand ml-5">Welcome to our Online Bookstore</span>
+    </div>
+
+    <div class="row m-1 p-1">
+        <div id="Access" class="col-4 text-center">Access</div>
+        <div id="Access" class="col-4 text-center">Anytime</div>
+        <div id="Access" class="col-4 text-center">Anywhere</div>
+    </div>
+
+    <!--This is one of the new bootstrap commands that I use: hide the text-->
+    <h1 class="text-hide">The text is hidden! New bootstrap command is here.</h1>
+
+    <!--body and footer-->
+    <div class="text-center">
         @RenderBody()
+        <!--This is one of the new bootstrap commands that I use: the switch button-->
+        <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="customSwitch1">
+            <label class="custom-control-label" for="customSwitch1">Toggle this switch element to subscribe our daily book recommendation!</label>
+        </div>
         <footer class="text-center">Tingyu Huang, Inc 2021</footer>
     </div>
 </body>

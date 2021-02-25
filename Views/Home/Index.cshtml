@@ -3,15 +3,10 @@
 }
 @model BookListsViewModel
 
-<div class="text-center">
-    <header>
-        <h1 class="display-4">Welcome to our Online Store</h1>
-    </header>
-</div>
 
 @foreach (var x in Model.Books)
 {
-    <div class="text-center">
+    <div class="text-center card card-outline-primary m-1 p-1">
         <h3>Title: @x.Title</h3>
         <p>Author: @x.Author</p>
         <p>Publisher: @x.Publisher</p>
@@ -21,4 +16,9 @@
     </div>
 }
 
-<div page-model="@Model.PagingInfo" page-action="Index"></div>
+<div page-model="@Model.PagingInfo" page-action="Index" 
+     page-classes-enabled="true" page-class="btn"
+     page-class-normal="btn-outline-dark"
+     page-class-selected="btn-primary"
+     class="btn-group pull-right m-1">
+</div>
