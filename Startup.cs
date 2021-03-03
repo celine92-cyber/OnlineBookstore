@@ -59,6 +59,39 @@ namespace OnlineBookstore
 
             app.UseEndpoints(endpoints =>
             {
+                //if the user passes category and page number Ex. Classic/1
+                endpoints.MapControllerRoute("catpage",
+                    "{category}/{page:int}",
+                    new { Controller = "Home", action = "Index" });
+
+                //if the user passes category and page number with "P" Ex. Classic/P1
+                endpoints.MapControllerRoute("catpage",
+                    "{category}/P{page:int}",
+                    new { Controller = "Home", action = "Index" });
+
+                //if the user passes Books/page number Ex.Books/2
+                endpoints.MapControllerRoute("page",
+                    "Books/{page:int}",
+                    new { Controller = "Home", action = "Index" });
+
+                //if the user passes only the page number Ex./2
+                endpoints.MapControllerRoute("page",
+                    "{page:int}",
+                    new { Controller = "Home", action = "Index" });
+
+                //if the user  passes /Books and category Ex. Books/Classic
+                endpoints.MapControllerRoute("category",
+                    "Books/{category}",
+                    new { Controller = "Home", action = "Index", page = 1 });
+
+                //if the user only passes category Ex. /Classic
+                endpoints.MapControllerRoute("category",
+                    "{category}",
+                    new { Controller = "Home", action = "Index", page = 1 });
+
+                //if the user passes Ex./P2
+                //This used to work,but doesn't work now
+                //If I delete the new endpoints /p2 will direct me to the right page
                 endpoints.MapControllerRoute(
                    "pagination",
                    "P{page}",

@@ -26,6 +26,9 @@ namespace OnlineBookstore.Infrastructure
         public ViewContext ViewContext { get; set; }
         public PagingInfo PageModel { get; set; }
         public string PageAction { get; set; }
+
+        [HtmlAttributeName(DictionaryAttributePrefix = "page-url-")]//store additional entries in the dictionary
+        public Dictionary<string, object> PageUrlValues { get; set; } = new Dictionary<string, object>();
         public bool PageClassesEnabled { get; set; }
         public string PageClass { get; set; }
         public string PageClassNormal { get; set; }
@@ -43,7 +46,9 @@ namespace OnlineBookstore.Infrastructure
             for (int i = 1; i <= PageModel.TotalPages; i++)
             {
                 TagBuilder tag = new TagBuilder("a");
-                tag.Attributes["href"] = urlHelper.Action(PageAction, new { page = i });
+
+                PageUrlValues["page"] = i;//know what page we are on cuz we are still inside the loop
+                tag.Attributes["href"] = urlHelper.Action(PageAction, PageUrlValues);//modify the tag by bringing the Dictionary
 
                 if (PageClassesEnabled)
                 {
