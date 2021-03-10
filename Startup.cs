@@ -35,6 +35,12 @@ namespace OnlineBookstore
 
             //Add Scope
             services.AddScoped<IOnlineBookstoreRepository, EFOnlineBookstoreRepository>();
+
+            //Add Razor Pages
+            services.AddRazorPages();
+
+            services.AddDistributedMemoryCache();
+            services.AddSession();//get information to stick
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +58,8 @@ namespace OnlineBookstore
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseSession();
 
             app.UseRouting();
 
@@ -98,6 +106,8 @@ namespace OnlineBookstore
                    new { Controller = "Home", action = "Index" });
 
                 endpoints.MapDefaultControllerRoute();
+
+                endpoints.MapRazorPages();
             });
 
             SeedData.EnsurePopulated(app); //bring the seed data
