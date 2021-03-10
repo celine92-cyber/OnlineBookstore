@@ -47,7 +47,7 @@ namespace OnlineBookstore.Infrastructure
             {
                 TagBuilder tag = new TagBuilder("a");
 
-                PageUrlValues["page"] = i;//know what page we are on cuz we are still inside the loop
+                PageUrlValues["pageNum"] = i;//know what page we are on cuz we are still inside the loop
                 tag.Attributes["href"] = urlHelper.Action(PageAction, PageUrlValues);//modify the tag by bringing the Dictionary
 
                 if (PageClassesEnabled)

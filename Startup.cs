@@ -21,7 +21,7 @@ namespace OnlineBookstore
         }
 
         public IConfiguration Configuration { get; set; }
-
+        
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -30,7 +30,7 @@ namespace OnlineBookstore
            //Connect the database
             services.AddDbContext<OnlineBookstoreDbContext>(options =>
            {
-               options.UseSqlServer(Configuration["ConnectionStrings:OnlineBookstoreConnection"]);
+               options.UseSqlite(Configuration["ConnectionStrings:OnlineBookstoreConnection"]);
            });
 
             //Add Scope
@@ -69,22 +69,22 @@ namespace OnlineBookstore
             {
                 //if the user passes category and page number Ex. Classic/1
                 endpoints.MapControllerRoute("catpage",
-                    "{category}/{page:int}",
+                    "{category}/{pageNum:int}",
                     new { Controller = "Home", action = "Index" });
 
                 //if the user passes category and page number with "P" Ex. Classic/P1
                 endpoints.MapControllerRoute("catpage",
-                    "{category}/P{page:int}",
+                    "{category}/P{pageNum:int}",
                     new { Controller = "Home", action = "Index" });
 
                 //if the user passes Books/page number Ex.Books/2
                 endpoints.MapControllerRoute("page",
-                    "Books/{page:int}",
+                    "Books/{pageNum:int}",
                     new { Controller = "Home", action = "Index" });
 
                 //if the user passes only the page number Ex./2
                 endpoints.MapControllerRoute("page",
-                    "{page:int}",
+                    "{pageNum:int}",
                     new { Controller = "Home", action = "Index" });
 
                 //if the user  passes /Books and category Ex. Books/Classic
@@ -102,7 +102,7 @@ namespace OnlineBookstore
                 //If I delete the new endpoints /p2 will direct me to the right page
                 endpoints.MapControllerRoute(
                    "pagination",
-                   "P{page}",
+                   "P{pageNum}",
                    new { Controller = "Home", action = "Index" });
 
                 endpoints.MapDefaultControllerRoute();

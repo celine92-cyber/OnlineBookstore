@@ -24,7 +24,7 @@ namespace OnlineBookstore.Controllers
             _repository = repository;
         }
 
-        public IActionResult Index(string category ,int page = 1)
+        public IActionResult Index(string category ,int pageNum = 1)
         {
             if (ModelState.IsValid)
             {
@@ -34,11 +34,11 @@ namespace OnlineBookstore.Controllers
                             Books = _repository.Books
                                 .Where(p => category == null || p.Category == category )// add filters
                                 .OrderBy(p => p.BookId)
-                                .Skip((page - 1) * PageSize)
+                                .Skip((pageNum - 1) * PageSize)
                                 .Take(PageSize),
                             PagingInfo = new PagingInfo
                             {
-                                CurrentPage = page,
+                                CurrentPage = pageNum,
                                 ItemsPerPage = PageSize,
                                 TotalNumItems = category == null ? _repository.Books.Count() :
                                     _repository.Books.Where(x => x.Category ==category).Count() //these two lines help us print out only the existing pages for each category
