@@ -14,9 +14,10 @@ namespace OnlineBookstore.Pages
         private IOnlineBookstoreRepository repository;
 
         //Constructor
-        public ShopModel (IOnlineBookstoreRepository repo)
+        public ShopModel (IOnlineBookstoreRepository repo, Cart cartService)
         {
             repository = repo;
+            Cart = cartService;
         }
 
         //properties
@@ -27,7 +28,7 @@ namespace OnlineBookstore.Pages
         public void OnGet(string returnUrl)
         {
             ReturnUrl = returnUrl ?? "/";
-            Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+            //Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
         }
 
 
@@ -35,11 +36,11 @@ namespace OnlineBookstore.Pages
         {
             Book book = repository.Books.FirstOrDefault(p => p.BookId == bookId);
 
-            Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+            //Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
 
             Cart.AddItem(book, 1);
 
-            HttpContext.Session.SetJson("cart", Cart);
+            //HttpContext.Session.SetJson("cart", Cart);
 
             return RedirectToPage(new { returnUrl = returnUrl });
         }
