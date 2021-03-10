@@ -23,7 +23,7 @@ namespace OnlineBookstore.Models
                     Quantity = quantity
                 });
             }
-            else
+            else 
             {
                 line.Quantity += quantity;
             }
